@@ -1,0 +1,78 @@
+{% extends 'blogs/index.html' %}
+{% load static %}
+
+
+<title>{% block title %} Home {% endblock title %}</title>
+
+
+
+{% block content %}
+    <!-- hero image -->
+    <div class="hero-img">
+        <img id='hero-img' src="{% static 'blogs/images/img1.webp' %}"  alt="">
+        <div class='hero-img-background-overlay'>
+            <div class='hero-img-text-container'>
+                <div class='hero-img-text-wrapper'>
+                    <h1>What is on your mine?</h1>
+                    <p>
+                        Share, Learn, Chat with others users like you.
+                    </p>
+                    <div>
+                        <a href="">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-hero-img">
+        <img id='mobile-hero-img' src="{% static 'blogs/images/img2.webp' %}" alt="">
+        <div class='mobile-hero-img-background-overlay'>
+            <div class='mobile-hero-img-text-container'>
+                <div class='mobile-hero-img-text-wrapper'>
+                    <h1>What is on your mine?</h1>
+                    <p class="hero-text">
+                        Share, Learn, Chat with others users like you.
+                    </p>
+                    <p class='hero-text2'>Lorem Ipsum is simply dummy text</p>
+                    <div>
+                        <a href="">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of hero image -->
+
+    <!-- scroll up btn -->
+    <div class="scroll-up-container">
+        <a class='scroll-up' href="#header"><i class="fas fa-chevron-up"></i></a>
+    </div>
+    <!-- end of scroll up btn -->
+
+    <!-- main content -->
+    <div class="content-container">
+        <div class="content-header">
+            <h1>Home</h1>
+        </div>
+        <div class="blog-container">
+            
+        </div>
+    </div>
+    <!-- end of main content -->
+
+
+
+
+    <script type="text/javascript">
+
+        
+
+
+
+
+
+    </script>
+
+
+
+{% endblock content %}

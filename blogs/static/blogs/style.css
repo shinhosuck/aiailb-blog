@@ -1,0 +1,343 @@
+::before,
+::after,
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    scroll-snap-stop: always;
+    overflow-x: hidden;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+input:focus, input:active,
+textarea:focus, textarea:active,
+a:focus, a:active {
+    outline: none;
+    background-color: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    outline: none;
+    box-shadow: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/*
+====
+HOME
+====*/
+
+/* mobile screen 839px and smaller hero image */
+
+.hero-img {
+    display: none;
+}
+
+.mobile-hero-img {
+    position: relative;
+}
+
+.mobile-hero-img > img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.mobile-hero-img-background-overlay {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.5);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.mobile-hero-img-text-container {
+    color: white; 
+    flex: 0 0 70%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-hero-img-text-wrapper {
+    text-align: center;
+}
+
+.mobile-hero-img-text-wrapper > h1 {
+    font-size: 1rem; 
+    letter-spacing: 0.05rem;
+}
+
+.mobile-hero-img-text-wrapper > p {
+    font-size: 0.8rem; 
+    color: rgb(228, 228, 228); 
+    line-height: 1.3;  
+    letter-spacing: 0.05rem;
+    margin-top: 0.2rem;
+}
+
+.mobile-hero-img-text-wrapper > div {
+    text-align: center;
+}
+
+.mobile-hero-img-text-wrapper > div > a {
+    margin-top: 0.5rem; 
+    padding: 0.5rem 1rem; 
+    letter-spacing: 0.05rem;
+    background: rgb(0, 206, 0); 
+    color: rgb(255, 255, 255); 
+    border-radius: 7px; 
+    font-size: 1rem; 
+}
+
+.hero-text2 {
+    display: none;
+}
+
+@media screen and (min-width: 350px) {
+    .mobile-hero-img-text-wrapper > h1 {
+        font-size: 1.3rem; 
+    }
+    
+    .mobile-hero-img-text-wrapper > p {
+        font-size: 1rem; 
+        line-height: 1.2;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .mobile-hero-img-text-wrapper > h1 {
+        font-size: 1.5rem; 
+    }
+    
+}
+
+@media screen and (min-width: 500px) {
+    .mobile-hero-img-text-wrapper > h1 {
+        font-size: 1.8rem; 
+    }
+    
+    .mobile-hero-img-text-wrapper > p {
+        line-height: 1.3;
+        margin-top: 0.5rem;
+    }
+
+    .mobile-hero-img-text-wrapper > div > a {
+        margin-top: 0.7rem; 
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .mobile-hero-img-text-wrapper > h1 {
+        font-size: 2rem; 
+    }
+    
+    .mobile-hero-img-text-wrapper > p {
+        font-size: 1.1rem; 
+    }
+
+    .mobile-hero-img-text-wrapper > div > a {
+        padding: 0.8rem 1.5rem; 
+        border-radius: 10px;
+        font-size: 1.2rem; 
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .mobile-hero-img-text-wrapper > h1 {
+        font-size: 2.3rem; 
+    }
+    
+    .mobile-hero-img-text-wrapper > p {
+        font-size: 1.2rem; 
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+    .mobile-hero-img-text-wrapper > h1 {
+        font-size: 2.5rem; 
+    }
+    
+    .mobile-hero-img-text-wrapper > p {
+        font-size: 1.2rem; 
+    }
+
+}
+/* end of mobile screen 839px and smaller hero image */
+
+/* large screen hero image */
+@media screen and (min-width: 840px) {
+
+    .mobile-hero-img {
+        display: none;
+    }
+
+    .hero-img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .hero-img > img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .hero-img-background-overlay {
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0, 0, 0, 0.5);
+        display: flex; 
+        justify-content: flex-end; 
+        align-items: center;
+    }
+
+    .hero-img-text-container {
+        color: white; 
+        flex: 0 0 50%;
+        height: 100%; 
+        padding-right: 1rem; 
+        display: flex; 
+        align-items: center;
+    }
+
+    .hero-img-text-wrapper > h1 {
+        font-size: 2.4rem; 
+        letter-spacing: 0.05rem;
+    }
+
+    .hero-img-text-wrapper > p {
+        color: rgb(228, 228, 228); 
+        line-height: 1.3; 
+        letter-spacing: 0.05rem;
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .hero-img-text-wrapper > div {
+        text-align: start;
+    }
+
+    .hero-img-text-wrapper > div > a {
+        margin-top: 0.7rem; 
+        padding: 0.8rem 1.5rem; 
+        letter-spacing: 0.05rem;
+        background: rgb(0, 206, 0); 
+        color: rgb(255, 255, 255); 
+        border-radius: 10px; 
+        font-size: 1.2rem; 
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .hero-img-text-wrapper > h1 {
+        font-size: 2.6rem; 
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .hero-img-text-wrapper > h1 {
+        font-size: 2.8rem; 
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .hero-img-text-wrapper > h1 {
+        font-size: 3rem; 
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .hero-img-text-wrapper > h1 {
+        font-size: 3.2rem; 
+    }
+
+    .hero-img-text-wrapper > p {
+        font-size: 1.3rem; 
+    }
+
+    .hero-img-text-wrapper > div > a {
+        margin-top: 1rem; 
+        padding: 1rem 1.7rem; 
+        font-size: 1.3rem;
+    }
+}
+/* end of large screen hero image */
+
+/* content container */
+
+.content-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.scroll-up-container {
+    margin: 0 auto;
+    width: 90%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 90%;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+
+    max-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transition: max-height 0s linear, opacity 0.5s linear;
+}
+
+.show-scroll-up-container {
+    max-height: 100px;
+    opacity: 1;
+}
+
+.scroll-up-container > a {
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.scroll-up-container > a:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* end of content container */
+
+/*
+===========
+END OF HOME
+===========*/

@@ -1,0 +1,93 @@
+{% load static %}
+
+<!-- <link rel="stylesheet" type='text/css' href="{% static 'blogs/nav.css' %}"> -->
+
+
+<!-- large screen  -->
+<div class="nav-bar">
+    <nav class="nav-wrapper">
+        <div class="brand-name-wrapper">
+            <a href="{% url 'blogs:home' %}">
+                <span>A</span>
+                <div>
+                    <span class="l-span">IAILA</span>
+                    <span>BLOG FORUM</span>
+                </div>
+            </a>
+        </div>
+        <form class='search-form' action="" method="GET">
+            <input type="text" name="search" placeholder="Search by title or keyword">
+            <button name='submit-search' type="submit">Search</button>
+        </form>
+        <div class="large-font-awesome-btns">
+            <i class="fas fa-bars bars-btn-2"></i>
+            <i class="fas fa-close close-btn-2"></i>
+        </div>
+        <ul class="nav-items">
+            <li class="profile-container">
+                <a class="user-profile" href="">
+                    <img src="{% static 'blogs/profile_img/dog.webp' %}" alt="">
+                    <div class="user-info">
+                        <span>Username: Admin</span>
+                        <span>Joined: Feb 12, 2022</span>
+                        <div style="display: none;">
+                            <span>Location: Philippines</span>
+                            <span>Blogs: 10</span>
+                            <span>Likes: 22</span>
+                            <span>Following: 3</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down profile-container-chevron"></i>
+                </a>
+            </li>
+            <li><a href=""><i class="fas fa-home"></i>Home</a></li>
+            <li><a href=""><i class="fa-solid fa-blog"></i>My blogs</a></li>
+            <li><a href=""><i class="fas fa-sign-in"></i>Login</a></li>
+            <li><a href=""><i class="fa-solid fa-user-plus"></i> Join</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- end of large screen -->
+
+
+
+
+<!-- mobile navigation bar -->
+<div class="mobile-nav-bar">
+    <div class="mobile-brand-name">
+        <a href="{% url 'blogs:home' %}">
+            <span>A</span>
+            <div>
+                <span class="l-span">IAILA</span>
+                <span>BLOG FORUM</span>
+            </div>
+        </a>
+        <div class="font-awesome-btns">
+            <i class="fas fa-bars bars-btn"></i>
+            <i style="display: none;" class="fas fa-close close-btn"></i>
+        </div>
+    </div>
+    <ul class="mobile-menu-items">
+        <li>
+            <a class="user-profile" href="">
+                <img src="{% static 'blogs/profile_img/dog.webp' %}" alt="">
+                <div>
+                    <span>Admin</span>
+                    <span>Joined: Feb 12, 2022</span>
+                </div>
+            </a>
+        </li>
+        <li><a class='mobile-search' href=""><i class="fas fa-search"></i>Search</a></li>
+        <li class='mobile-search-form'>
+            <form action="" method="GET">
+                <input type="text" name="search" placeholder="Search by title or keyword">
+                <button name='submit-search' type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </li>
+        <li><a href=""><i class="fas fa-home"></i>Home</a></li>
+        <li><a href=""><i class="fa-solid fa-blog"></i>My blogs</a></li>
+        <li><a href=""><i class="fas fa-sign-in"></i>Login</a></li>
+        <li><a href=""><i class="fa-solid fa-user-plus"></i> Join</a></li>
+    </ul>
+</div>
+<!-- end of mobile screen -->
