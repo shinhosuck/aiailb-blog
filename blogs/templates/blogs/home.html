@@ -7,41 +7,6 @@
 
 
 {% block content %}
-    <!-- hero image -->
-    <div class="hero-img">
-        <img id='hero-img' src="{% static 'blogs/images/img1.webp' %}"  alt="">
-        <div class='hero-img-background-overlay'>
-            <div class='hero-img-text-container'>
-                <div class='hero-img-text-wrapper'>
-                    <h1>What is on your mine?</h1>
-                    <p>
-                        Share, Learn, Chat with others users like you.
-                    </p>
-                    <div>
-                        <a href="">Get started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mobile-hero-img">
-        <img id='mobile-hero-img' src="{% static 'blogs/images/img2.webp' %}" alt="">
-        <div class='mobile-hero-img-background-overlay'>
-            <div class='mobile-hero-img-text-container'>
-                <div class='mobile-hero-img-text-wrapper'>
-                    <h1>What is on your mine?</h1>
-                    <p class="hero-text">
-                        Share, Learn, Chat with others users like you.
-                    </p>
-                    <p class='hero-text2'>Lorem Ipsum is simply dummy text</p>
-                    <div>
-                        <a href="">Get started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end of hero image -->
 
     <!-- scroll up btn -->
     <div class="scroll-up-container">
@@ -50,9 +15,20 @@
     <!-- end of scroll up btn -->
 
     <!-- main content -->
+    <div class="content-header">
+        <h1>Home</h1>
+    </div>
     <div class="content-container">
-        <div class="content-header">
-            <h1>Home</h1>
+        <div class="blog-form-container">
+            <h3>Create post</h3>
+            <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{% url 'blogs:home' %}" name="next" style="border: 1px solid purple">
+                <!-- <label for="title">max length 100 charcters</label> -->
+                <input id="title" type="text" name="title" placeholder="Title">
+                <textarea name="content" id="content" cols="30" rows="10" placeholder="What is on your mine!"></textarea>
+                <button name="submit" type="submit">Submit</button>
+            </form>
         </div>
         <div class="blog-container">
             
@@ -65,12 +41,64 @@
 
     <script type="text/javascript">
 
-        
+        const blogForm = document.querySelector("#blog-form")
+        const blogContainer = document.querySelector('.blog-container')
 
 
+        function handleBlogs(blog){
+            let id = blog.id
+            let title = blog.title
+            let content = blog.content
 
+            let blog_content = `<div style="border: 1px solid rgb(233, 233, 233); padding: 1rem;border-radius: 10px">
+                                    <p style="margin-bottom: 0.5rem">${id}</p>
+                                    <h2 style="letter-spacing: 0.05rem;margin-bottom: 0.5rem">${title}</h2>
+                                    <p style="line-height: 1.5; letter-spacing: 0.05rem">${content}</p>
+                                </div>`
+            blogContainer.innerHTML = blog_content + blogContainer.innerHTML
 
+            console.log(id, title, content)
+        }
 
+        // handle blog form
+        blogForm.addEventListener('submit', function(event){
+            event.preventDefault()
+            const form = event.target
+            const newFormData = new FormData(form)
+            const url = form.getAttribute('action')
+            const method = form.getAttribute('method')
+            const responseType = 'json'
+
+            const xhr = new XMLHttpRequest()
+            xhr.responseType = responseType
+            xhr.open(method, url)
+            xhr.setRequestHeader('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+            xhr.onload = function(){
+                const blog = xhr.response
+                blogForm.reset()
+                handleBlogs(blog)
+            }
+            xhr.send(newFormData)
+        })
+        // end of handle blog form
+
+        // load blogs
+        const xhr = new XMLHttpRequest()
+        const url = '{% url "blogs:all-blogs" %}'
+        const method = 'GET'
+        const responseType = 'json'
+
+        xhr.responseType = responseType
+        xhr.open(method, url)
+        xhr.onload = function(){
+            const blogs = [...xhr.response.blog_list]
+            blogs.forEach(function(blog){
+                handleBlogs(blog)
+            })
+        }    
+        xhr.send()
+        // end of load blog
     </script>
 
 

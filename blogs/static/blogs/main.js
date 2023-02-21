@@ -50,17 +50,22 @@ let clickEvents = function handleClickEvents(event) {
         mobileSearchForm.classList.toggle('show-mobile-search-form')
     }
     if(event.currentTarget == userProfile) {
-        userInfo.classList.toggle('show-user-info')
+        console.log(window.innerWidth)
+        if(window.innerWidth > 1920) {
+            userInfo.classList.toggle('show-user-info')
+            userInfo.style.right = `${((window.innerWidth - 1920) / 2) + 10}px`
+        }else{
+            userInfo.classList.toggle('show-user-info')
+            userInfo.style.right = '10px'
+        }
         if(window.innerWidth >= 1150) {
             event.preventDefault()
         }
         if(userInfo.classList.contains('show-user-info')) {
             profileContainerChevron.style.transform = 'rotate(540deg)'
             profileContainerChevron.style.transition = 'transform 0.3s linear'
-        }
-        else {
-            profileContainerChevron.style.transform = 'initial'
-            
+        }else {
+            profileContainerChevron.style.transform = 'initial'  
         }
     }
     if(event.currentTarget == scrollUp) {
