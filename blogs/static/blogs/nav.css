@@ -606,10 +606,9 @@ NAVIGATION
 
     .hero-img {
         position: relative;
-        width: 100%;
-        height: auto;
         display: block;
     }
+    
     .hero-img > img {
         width: 100%;
         height: auto;

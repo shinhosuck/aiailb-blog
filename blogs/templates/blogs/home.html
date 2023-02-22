@@ -7,31 +7,27 @@
 
 
 {% block content %}
-
-    <!-- scroll up btn -->
-    <div class="scroll-up-container">
-        <a class='scroll-up' href="#header"><i class="fas fa-chevron-up"></i></a>
-    </div>
-    <!-- end of scroll up btn -->
-
     <!-- main content -->
     <div class="content-header">
         <h1>Home</h1>
     </div>
     <div class="content-container">
-        <div class="blog-form-container">
-            <h3>Create post</h3>
-            <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="hidden" value="{% url 'blogs:home' %}" name="next" style="border: 1px solid purple">
-                <!-- <label for="title">max length 100 charcters</label> -->
-                <input id="title" type="text" name="title" placeholder="Title">
-                <textarea name="content" id="content" cols="30" rows="10" placeholder="What is on your mine!"></textarea>
-                <button name="submit" type="submit">Submit</button>
-            </form>
-        </div>
-        <div class="blog-container">
-            
+        <div class="content-wrapper">
+            <h2>Create post</h2>
+            <div class="blog-form-container">
+                <!-- <h3>Create post</h3> -->
+                <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" value="{% url 'blogs:home' %}" name="next" style="border: 1px solid purple">
+                    <input id="title" type="text" name="title" placeholder="Title">
+                    <textarea name="content" id="content" cols="30" rows="10" placeholder="What is on your mine!"></textarea>
+                    <button name="submit" type="submit">Submit</button>
+                </form>
+            </div>
+        
+            <div class="blog-container">
+                <!-- blogs go here -->
+            </div>
         </div>
     </div>
     <!-- end of main content -->
@@ -49,15 +45,54 @@
             let id = blog.id
             let title = blog.title
             let content = blog.content
+            let likes = blog.likes
+            let dislikes = blog.dislikes
 
-            let blog_content = `<div style="border: 1px solid rgb(233, 233, 233); padding: 1rem;border-radius: 10px">
-                                    <p style="margin-bottom: 0.5rem">${id}</p>
-                                    <h2 style="letter-spacing: 0.05rem;margin-bottom: 0.5rem">${title}</h2>
-                                    <p style="line-height: 1.5; letter-spacing: 0.05rem">${content}</p>
-                                </div>`
+            let blog_content = `<a href="/blog/detail/${id}" style="display: block; border: 1px solid rgb(233, 233, 233); padding: 1rem;border-radius: 10px;
+                                    margin-bottom: 1rem">
+                                    {% comment %}
+                                        <p style="margin-bottom: 0.5rem">${id}</p>
+                                    {% endcomment %}
+                                    <div style='display: flex; align-items: center;margin-bottom: 1rem;'>
+                                        <img src='{% static "blogs/profile_img/dog.webp" %}' 
+                                            style="width: 40px; height: 40px; display: block; border-radius: 50%;">
+                                            {% if request.user.username %}
+                                                <span style='padding-left: 0.3rem;letter-spacing: 0.05rem; color: black'>{{ request.user.username }}</span>
+                                            {% else %}
+                                                <span style='padding-left: 0.3rem;letter-spacing: 0.05rem; color: black'>Annoymous</span>
+                                            {% endif %}
+                                    </div>
+                                    <h3 style="letter-spacing: 0.05rem; color: black">${title}</h3>
+                                    <img src="{% static 'blogs/images/img3.webp' %}" style="display: block; width: 100%; height: auto; 
+                                        border-radius: 10px; margin: 1rem 0;">
+                                    <p style="line-height: 1.6; letter-spacing: 0.05rem; color: rgb(65, 65, 65);">${content}...
+                                            <span style="color: rgb(0, 206, 0); font-weight: 500">Show more</span>
+                                    </p>
+                                    {% comment %}
+                                        <div style="display: flex; align-items: center; column-gap: 1.5rem; 
+                                            margin-top: 1rem;">
+                                            <div style="color: gray;">
+                                                <i style="font-size: 1.2rem; padding-right: 0.2rem" class="fas fa-thumbs-up"></i>
+                                                <span>${likes}</span>
+                                            </div>
+                                            <div style="color: gray;">
+                                                <span style="padding-right: 0.2rem;">${dislikes}</span>
+                                                <i style="transform: rotateY(180deg); font-size: 1.2rem;" class="fas fa-thumbs-down"></i>
+                                            </div>
+                                            <div>
+                                                <a href="" style="color: rgb(0, 206, 0);">
+                                                    <i style="font-size: 1.2rem" class="fas fa-reply"></i>
+                                                    <span style="letter-spacing: 0.05rem;">reply</span>
+                                                </a>
+                                            </div>
+                                            <div style="color: gray;">
+                                                <i style="font-size: 1.2rem;" class="fas fa-blog"></i>
+                                                <span>follow</span>
+                                            </div>
+                                        </div>
+                                    {% endcomment %}
+                                </a>`
             blogContainer.innerHTML = blog_content + blogContainer.innerHTML
-
-            console.log(id, title, content)
         }
 
         // handle blog form
@@ -99,6 +134,13 @@
         }    
         xhr.send()
         // end of load blog
+
+
+        const blogFormContainer = document.querySelector('.blog-form-container')
+
+        window.addEventListener('resize', function(){
+            console.log(blogFormContainer.offsetWidth)
+        })
     </script>
 
 

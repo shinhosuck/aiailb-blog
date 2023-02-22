@@ -12,7 +12,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-    scroll-snap-stop: always;
+    /* scroll-snap-stop: always; */
     overflow-x: hidden;
     max-width: 1920px;
     margin: 0 auto;
@@ -51,44 +51,37 @@ HOME
 ====*/
 
 /* content container */
-
-.scroll-up-container {
-    margin: 0 auto;
-    width: 90%;
-    position: -webkit-sticky;
-    position: sticky;
+.scroll-up {
+    position: fixed;
     top: 90%;
+    left: 80%;
     z-index: 10;
-    display: flex;
-    justify-content: flex-end;
-
     max-height: 0;
+    width: 0;
     overflow: hidden;
     white-space: nowrap;
     opacity: 0;
     transition: max-height 0s linear, opacity 0.5s linear;
+
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.show-scroll-up-container {
+.show-scroll-up {
     max-height: 100px;
     opacity: 1;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
-.scroll-up-container > a {
-    padding: 0.5rem 1rem;
-    font-size: 1.3rem;
-    color: rgb(255, 255, 255);
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-}
-
-.scroll-up-container > a:hover {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.content-container {
-    width: 90%;
-    margin: 0 auto;
+.scroll-up:hover {
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .content-header > h1 {
@@ -97,27 +90,23 @@ HOME
     padding: 1rem 0;
 }
 
+.content-container {
+    width: 90%;
+    margin: 0 auto;
+    /* padding-bottom: 1rem; */
+}
+
+.content-wrapper > h2 {
+    padding: 1rem 0;
+    letter-spacing: 0.05rem;
+}
+
 .blog-form-container {
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: 10px;
     border: 1px solid lightgray;
 }
-
-.blog-form-container > h3 {
-    padding-bottom: 1rem;
-    letter-spacing: 0.05rem;
-    /* font-size: 20px; */
-    color: rgb(65, 65, 65)
-}
-
-/* #blog-form > label {
-    width: 100%;
-    display: block;
-    font-size: 0.85rem;
-    color: rgb(83, 83, 83);
-    letter-spacing: 0.05rem;
-} */
 
 #blog-form > input {
     display: block;
@@ -158,12 +147,6 @@ HOME
     cursor: pointer;
 }
 
-.blog-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    justify-content: flex-start;
-}
 
 /* end of content container */
 

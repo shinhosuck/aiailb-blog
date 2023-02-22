@@ -8,20 +8,21 @@ const mobileSearchForm = document.querySelector('.mobile-search-form')
 const mobileSearch = document.querySelector('.mobile-search')
 const userProfile = document.querySelector('.user-profile')
 const userInfo = document.querySelector('.user-info')
-const scrollUpContainer = document.querySelector('.scroll-up-container')
 const scrollUp = document.querySelector('.scroll-up')
 const profileContainerChevron = document.querySelector('.profile-container-chevron')
 
 
-
+// show and remove scroll up button
 window.onscroll = function(){
-    if(window.pageYOffset >= 303) {
-        scrollUpContainer.classList.add('show-scroll-up-container')
+    if(window.pageYOffset >= 300) {
+        scrollUp.classList.add('show-scroll-up')
     }
-    if(window.pageYOffset <= 303) {
-        scrollUpContainer.classList.remove('show-scroll-up-container')
+    if(window.pageYOffset <= 300) {
+        scrollUp.classList.remove('show-scroll-up')
     }
 }
+
+// end of scroll up button
 
 let clickEvents = function handleClickEvents(event) {
     if(event.currentTarget == barsBtn) {
@@ -69,7 +70,7 @@ let clickEvents = function handleClickEvents(event) {
         }
     }
     if(event.currentTarget == scrollUp) {
-        scrollUpContainer.classList.remove('show-scroll-up-container')
+        scrollUp.classList.remove('show-scroll-up')
     }
     else if(event.target == window) {
         if(window.innerWidth > 780) {
