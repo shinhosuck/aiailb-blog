@@ -10,9 +10,30 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    /* 10% color */
+    --blood-orange: rgb(255, 69, 0);
+    --deep-orange: #ff6a33;
+    --dark-beach: rgb(255, 143, 102);
+    --pale-salmon: rgb(255, 181, 153);
+
+    /* background */
+    --mild-black-background: rgb(78, 78, 78);
+    --font-gray-background: rgb(100, 100, 100);
+
+    /* font color */
+    --font-black1 : rgb(0, 0, 0);
+    --font--black2: rgb(29, 29, 29);
+    --font-light-gray: rgb(182, 182, 182);
+    --font-white: rgb(255, 255, 255);
+
+    /* border */
+    --mild-black-border: rgb(65, 65, 65);
+
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    /* scroll-snap-stop: always; */
     overflow-x: hidden;
     max-width: 1920px;
     margin: 0 auto;
@@ -44,4 +65,94 @@ button {
 ::placeholder {
     color: rgb(190, 190, 190);
     letter-spacing: initial;
+}
+
+
+/* =======
+NAVIGATION
+========== */
+
+/* mobile screen */
+header {
+    background: #520052;
+}
+
+.navigation {
+    /* position: relative; */
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-name {
+    padding: 1rem 0;
+    font-size: 1.7rem;
+    color: var(--deep-orange);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.font-awesome-btns {
+    font-size: 1.5rem;
+    color: var(--font-white);
+}
+
+.nav-items-close-btn {
+    display: none;
+}
+
+.nav-items {
+    position: absolute;
+    width: 100%;
+    max-width: 300px;
+    z-index: 2;
+    top: 63px;
+    right: 0px;
+    max-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    background: var(--mild-black-background);
+    transition: max-height 0s linear, opacity 0s linear;
+}
+
+.show-nav-items {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.nav-item > a {
+    display: block;
+    padding: 1rem 0 1rem 2rem;
+    border-bottom: 1px solid var(--mild-black-border);
+    display: flex;
+    align-items: center;
+    color: var(--font-white);
+    letter-spacing: 0.05rem;
+}
+
+.nav-item > a > span {
+    margin-top: 0.2rem;
+}
+
+.nav-item > a > i {
+    font-size: 1.18rem;
+    margin-right: 0.6rem;
+}
+
+.nav-item > a:hover {
+    background: var(--font-gray-background);
+}
+
+@media screen and (max-width: 300px) {
+    .nav-item > a {
+        font-size: 0.9rem;
+        padding-left: 1.5rem;
+    }
+
+    .nav-item > a > span {
+        margin-top: 0.2rem;
+    }
 }
