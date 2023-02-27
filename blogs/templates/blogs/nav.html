@@ -1,42 +1,108 @@
 {% load static %}
 
-
-<nav class="navigation">
-    <a href="#" class="brand-name">MyBrand</a>
-    <div class="font-awesome-btns">
-        <i class="fas fa-bars nav-items-open-btn"></i>
-        <i class="fas fa-close nav-items-close-btn"></i>
+<div class="mobile-nav">
+    <div class="brand-container">
+        <div class="menu-open-close-btns">
+            <span class="nav-open-btn"><i class="fas fa-bars bars"></i></span>
+            <span class="nav-close-btn"><i class="fas fa-close close"></i></span>
+        </div>
+        <a class="brand-name" href="#">MYBRAND</a>
+        <div  class="mobile-search-form ">
+            <i class="fas fa-close close-search-form"></i>
+            <form action="">
+                <input type="hidden" value="/" name="next">
+                <input type="text" name="search" placeholder="search">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="search-menu">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </div>
     </div>
-    <ul class="nav-items">
-        <li class="nav-item">
-            <a class="nav-home" href="">
-                <i class="fa-solid fa-house home-btn"></i>
-                <span>Home</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-contact" href="">
-                <i class="fa-solid fa-address-book contact-btn"></i>
-                <span>Contact</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-about" href="">
-                <i class="fa-solid fa-users about-btn"></i>
-                <span>About</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-login" href="">
-                <i class="fa-solid fa-right-to-bracket login-btn"></i>
-                <span>Login</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-register" href="">
-                <i class="fa-solid fa-user-plus register-btn"></i>
-                <span>Register</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+
+    <nav class="nav-items">
+        <a class="nav-item home" href="">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a class="nav-item contact" href="">
+            <i class="fa-solid fa-address-book"></i>
+            <span>Contact</span>
+        </a>
+        <a class="nav-item about" href="">
+            <i class="fa-solid fa-users"></i>
+            <span>About</span>
+        </a>
+        <a class="nav-item login" href="">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span>Login</span>
+        </a>
+        <a class="nav-item register" href="">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Register</span>
+        </a>
+    </nav>
+</div>
+
+
+<script type="text/javascript">
+
+    const navOpenBtn = document.querySelector('.nav-open-btn')
+    const navCloseBtn = document.querySelector('.nav-close-btn')
+    const barsBtn = document.querySelector('.bars')
+    const closeBtn = document.querySelector('.close')
+    const navItems = document.querySelector(".nav-items")
+    const searchMenu = document.querySelector(".search-menu")
+    const mobileSearchForm = document.querySelector(".mobile-search-form")
+    const closeSearchForm = document.querySelector(".close-search-form")
+
+
+
+    const handleEvents = function(event){
+        if(event.currentTarget == navOpenBtn) {
+            navOpenBtn.style.display = "none"
+            navCloseBtn.style.display = "flex"
+            navItems.classList.add("show-nav-items")
+        }
+        if(event.currentTarget == navCloseBtn) {
+            navOpenBtn.style.display = "flex"
+            navCloseBtn.style.display = "none"
+            navItems.classList.remove("show-nav-items")
+        }
+        if(event.currentTarget == searchMenu) {
+            mobileSearchForm.classList.add("show-mobile-search-form")
+            closeSearchForm.style.opacity = "0"
+            setTimeout(function(){
+                closeSearchForm.style.opacity = "1"
+            }, 800)
+        }
+        if(event.currentTarget == closeSearchForm) {
+            mobileSearchForm.classList.remove("show-mobile-search-form")
+        }
+    }
+
+
+    navOpenBtn.addEventListener("click", handleEvents)
+    navCloseBtn.addEventListener("click", handleEvents)
+    searchMenu.addEventListener("click", handleEvents)
+    closeSearchForm.addEventListener("click", handleEvents)
+
+
+
+    // removes nav items when clicked on window
+    window.addEventListener("click", function(event){
+        if(navItems.classList.contains("show-nav-items")) {
+            if(event.target == navOpenBtn || event.target == barsBtn
+                || event.target == navCloseBtn || event.target == closeBtn) {
+                console.log("do nothing")
+            }
+            else{
+                navItems.classList.remove("show-nav-items")
+                navOpenBtn.style.display = "flex"
+                navCloseBtn.style.display = "none"
+            }
+        }
+    })
+
+</script>
