@@ -10,33 +10,22 @@ html {
     scroll-behavior: smooth;
 }
 
-:root {
-    /* 10% color */
-    --blood-orange: rgb(255, 69, 0);
-    --deep-orange: #ff6a33;
-    --dark-beach: rgb(255, 143, 102);
-    --pale-salmon: rgb(255, 181, 153);
 
-    /* background */
-    --mild-black-background: rgb(78, 78, 78);
-    --gray-background: rgb(100, 100, 100);
+/* =============
+ORANGE 10% COLORS 
+=================*/
+/* 
+ORANGE1: rgb(255, 69, 0);
+ORANGE2: rgb(255, 106, 51);
+ORANGE3: rgb(255, 143, 102);
+ORANGE4: rgb(255, 181, 153); 
+*/
 
-    /* font color */
-    --font-black1 : rgb(0, 0, 0);
-    --font--black2: rgb(29, 29, 29);
-    --font-light-gray: rgb(182, 182, 182);
-    --font-white: rgb(255, 255, 255);
 
-    /* border */
-    --mild-black-border: rgb(70, 70, 70);
-
-}
 
 body {
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
-    /* max-width: 1920px;
-    margin: 0 auto; */
 }
 
 li {
@@ -45,7 +34,6 @@ li {
 
 a {
     text-decoration: none;
-    /* display: inline-block; */
 }
 
 input:focus, input:active,
@@ -64,165 +52,10 @@ button {
 
 ::placeholder {
     color: rgb(190, 190, 190);
-    letter-spacing: initial;
 }
 
 
 /* =======
 NAVIGATION
 ========== */
-
-/* brand */
-.mobile-nav {
-    border-bottom: 1px solid var(--mild-black-border);
-}
-
-.brand-container {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.menu-open-close-btns {
-    color: var(--font-black1);
-    border: 1px solid var(--mild-black-border);
-    border-radius: 5px;
-    font-size: 1.7rem;
-    cursor: pointer;
-}
-
-.nav-open-btn, .nav-close-btn {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nav-close-btn {
-    display: none;
-}
-
-.nav-close-btn > i {
-    transition: transform 0.4s linear;
-}
-
-.nav-close-btn:hover > i {
-    transform: rotate(180deg);
-}
-
-.brand-name {
-    color: var(--blood-orange);
-    font-weight: bold;
-    font-size: 2rem;
-    padding: 1rem 0; 
-    text-align: center;
-    flex: 2;
-}
-
-.mobile-search-form {
-    position: absolute;
-    z-index: 3;
-    top: 75px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-height: 0;
-    padding: 0.5rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    transition: max-height 0.2s linear, opacity 0.1s linear;
-}
-
-.show-mobile-search-form {
-    max-height: 500px;
-    opacity: 1;
-}
-
-.mobile-search-form > i {
-    flex: 0 0 100%;
-    text-align: end;
-    margin-bottom: 0.3rem;
-    font-size: 1.4rem;
-}
-
-.mobile-search-form > form {
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.mobile-search-form > form > input {
-    border: 1px solid var(--font-light-gray);
-    border-right: none;
-    padding: 0.5rem 1rem;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    flex: 2
-}
-
-.mobile-search-form > form > button {
-    border: none;
-    padding: 0.5rem 1rem;
-    background: var(--blood-orange);
-    border: 1px solid var(--blood-orange);
-    color: white;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.search-menu {
-    font-size: 1rem;
-    letter-spacing: 0.05rem;
-}
-
-.search-menu > i {
-    font-size: 1.3rem;
-}
-
-/* drop down nav items */
-.nav-items {
-    position: absolute;
-    top: 75px;
-    left: 10%;
-    width: 50%;
-    max-width: 300px;
-    max-height: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    opacity: 0;
-    border-radius: 10px;
-    background: var(--gray-background);
-    transition: max-height 0.2s linear, opacity 0.1s linear;
-}
-
-.nav-item {
-    display: block;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--mild-black-border);
-    padding: 1rem 2rem;
-    color: white;
-
-}
-
-.nav-item > i {
-    font-size: 1.4rem;
-    margin-right: 1.5rem;
-}
-
-.nav-item:last-child {
-    border-bottom: none;
-}
-
-.show-nav-items {
-    max-height: 500px;
-    opacity: 1;
-}
 
