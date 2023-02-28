@@ -51,11 +51,235 @@ button {
 }
 
 ::placeholder {
-    color: rgb(190, 190, 190);
+    color: rgb(105, 105, 105);
 }
 
+
+/* .noSelect {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.noSelect:focus {
+    outline: none !important;
+} */
 
 /* =======
 NAVIGATION
 ========== */
 
+header {
+    box-shadow: 2px 2px 6px rgb(211, 211, 211);
+}
+
+/* BRAND NAME */
+.mobile-nav-bar-container {
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.mobile-brand-name {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 69, 0);
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.mobile-brand-name-large-text {
+    font-size: 55px;
+}
+
+.mobile-brand-name-small-text > span {
+    font-size: 1.2rem;
+    display: block;
+}
+
+.mobile-brand-name-small-text > span:last-child {
+    color: rgb(77, 77, 77);
+    font-size: 1rem;
+}
+/* END OF BRAND NAME */
+
+
+/* OPEN AND CLOSE NAV MENU */
+.mobile-open-and-close-nav-btns {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    background: rgb(255, 106, 51);
+    color: white;
+}
+
+.mobile-close-nav-btn {
+    display: none;
+}
+/* END OF OPEN AND CLOSE NAV MENU */
+
+
+/*  MOBILE SEARCH MENU BUTTON */
+.mobile-search-menu-btns {
+    border: 1px solid rgb(131, 131, 131);
+    padding: 0.55rem 1rem;
+    border-radius: 20px;
+    color: rgb(44, 44, 44);
+}
+
+.mobile-search-menu-btns > i {
+    font-size: 1.1rem;
+}
+
+.mobile-search-menu-btns > span {
+    letter-spacing: 0.05rem;
+}
+/* END OF MOBILE SEARCH MENU BUTTON */
+
+
+/* MOBILE SEARCH FORM */
+.mobile-search-form-container {
+    position: absolute;
+    top: 85px;
+    width: 60%;
+    left: 50%;
+    max-height: 0;
+    transform: translate(-50%);
+    overflow: hidden;
+    white-space: nowrap;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    transition: max-height 1s linear, opacity 0.5s linear;
+}
+
+.mobile-search-menu-btns:hover ~ .mobile-search-form-container {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.mobile-search-form {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+    flex: 2;
+    border: 1px solid lightgray;
+    min-width: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    letter-spacing: 0.05rem;
+}
+
+.search-btn {
+    padding: 1rem 1.3rem;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    background: rgb(255, 69, 0);
+    color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    letter-spacing: 0.05rem;
+}
+
+.search-btn > i {
+    display: none !important;
+}
+
+@media screen and (max-width: 565px) {
+    .mobile-search-form-container {
+        width: 100%;
+        left: 0;
+        transform: initial;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .search-btn > i {
+        display: flex !important;
+    }
+
+    .search-box {
+        padding: 0.84rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .search-btn {
+        padding: 0.9rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    .search-btn > span {
+        display: none;
+    }
+}
+/* END OF MOBILE SEARCH FORM */
+
+
+/* NAV ITEMS */
+.mobile-nav-items {
+    position: absolute;
+    top: 85px;
+    width: 70%;
+    max-width: 350px;
+    max-height: 0;
+    right: 0;
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    /* z-index: -1; */
+    transition: max-height 0.4s linear, opacity 0.4s linear;
+
+    background: rgb(119, 18, 119);
+    border-radius: 20px;
+    box-shadow: 2px 2px 6px rgb(65, 9, 65);
+}
+
+.show-mobile-nav-items {
+    max-height: 500px;
+    /* z-index: 1; */
+    opacity: 1;
+}
+
+.mobile-nav-items > li {
+    border-bottom: 1px solid rgb(99, 15, 99);
+}
+
+.mobile-nav-items > li:last-child{
+    border-bottom: none;
+}
+
+.mobile-nav-items > li > a {
+    display: block;
+    padding: 1rem 2rem;
+    color: white;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+}
+/* END OF NAMV ITEMS */
+
+/* ==============
+END OF NAVIGATION
+================= */
