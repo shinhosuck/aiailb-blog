@@ -19,10 +19,13 @@
     </div>
 
     <!-- OPEN AND CLOSE NAV MENU -->
-
     <div class="mobile-open-and-close-nav-btns">
-        <i class="fas fa-bars mobile-open-nav-btn"></i>
-        <i class="fas fa-close mobile-close-nav-btn"></i>
+        <span class="mobile-open-nav-btn">
+            <i class="fas fa-bars"></i>
+        </span>
+        <span class="mobile-close-nav-btn">
+            <i class="fas fa-close"></i>
+        </span>
     </div>
 
     <!-- MOBILE NAV MENU -->
@@ -45,37 +48,158 @@
             </button>
         </form>
     </div>
-    
+
 </nav>
 
+<!-- LARGE SCREEN -->
 
+<nav class="large-nav-bar-container">
 
+    <a href="" class="large-brand-name">
+        <span class="large-brand-name-large-text">A</span>
+        <div class="large-brand-name-small-text">
+            <span>IAILB</span>
+            <span>FORUM</span>
+        </div>
+    </a>
+
+    <div class="large-search-form-container">
+        <form class="large-search-form" action="" method="GET">
+            <input type="hidden" value="" name="next">
+            <input class="large-search-box" type="text" name="search" placeholder="Search by key word">
+            <button class="large-search-btn" type="search">
+                <span>Search</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="large-open-and-close-nav-btns">
+        <span class="large-open-nav-btn">
+            <i class="fas fa-bars"></i>
+        </span>
+        <span class="large-close-nav-btn">
+            <i class="fas fa-close"></i>
+        </span>
+    </div>
+
+    <ul class="large-nav-items">
+        <li><a href="">Home</a></li>
+        <li><a href="">My posts</a></li>
+        <li><a href="">Comments</a></li>
+        <li><a href="">History</a></li>
+        <li><a href="">Logout</a></li>
+    </ul>
+
+    <ul class="x-large-nav-items">
+        <li><a href="">Home</a></li>
+        <li><a href="">My posts</a></li>
+        <li><a href="">Comments</a></li>
+        <li><a href="">History</a></li>
+        <li><a href="">Logout</a></li>
+    </ul>
+</nav>
 
 <script type="text/javascript">
 
-    const openNav = document.querySelector(".mobile-open-and-close-nav-btns")
-    const navItems = document.querySelector(".mobile-nav-items")
+    
 
-    openNav.addEventListener("click", function(){
-        navItems.classList.toggle("show-mobile-nav-items")
-    })
-       
 
+    // BARS AND CLOSE BTNS MOBILE NAV ITEMS
+    const mobileOpenNav = document.querySelector(".mobile-open-nav-btn")
+    const mobileCloseNav = document.querySelector(".mobile-close-nav-btn")
+    const mobileOpenCloseBtns = document.querySelector(".mobile-open-and-close-nav-btns")
+
+    // MOBILE NAV ITEMS
+    const mobileNavItems = document.querySelector(".mobile-nav-items")
+
+    // OPEN AND CLOSE MOBILE SEARCH FORM
+    const mobileSearchMenu = document.querySelector(".mobile-search-menu-btns")
+    const mobileSearchForm = document.querySelector(".mobile-search-form-container")
+
+     // LARGE SCREEN 700PX AND LARGER
+     const largeOpenNav = document.querySelector(".large-open-nav-btn")
+    const largeCloseNav = document.querySelector(".large-close-nav-btn")
+    const largeOpenCloseBtns = document.querySelector(".large-open-and-close-nav-btns")
+
+    // LARGE NAV ITEMS
+    const largeNavItems = document.querySelector(".large-nav-items")
+
+
+    const handleEvents = function(event) {
+        if(event.currentTarget == largeOpenNav) {
+            largeNavItems.classList.add("show-large-nav-items")
+            largeOpenNav.style.display = "none"
+            largeCloseNav.style.display = "inline-block"
+        }
+        if(event.currentTarget == largeCloseNav) {
+            largeNavItems.classList.remove("show-large-nav-items")
+            largeOpenNav.style.display = "inline-block"
+            largeCloseNav.style.display = "none"
+        }
+        if(event.currentTarget == mobileOpenNav) {
+            mobileNavItems.classList.add("show-mobile-nav-items")
+            mobileOpenNav.style.display = "none"
+            mobileCloseNav.style.display = "inline-block"
+
+            if(mobileSearchForm.classList.contains("show-mobile-search-form-container")){
+                mobileSearchForm.classList.remove("show-mobile-search-form-container")
+            }
+        }
+        if(event.currentTarget == mobileCloseNav) {
+            mobileNavItems.classList.remove("show-mobile-nav-items")
+            mobileOpenNav.style.display = "inline-block"
+            mobileCloseNav.style.display = "none"
+        }
+        if(event.currentTarget == mobileSearchMenu) {
+            mobileSearchForm.classList.toggle("show-mobile-search-form-container")
+
+            if(mobileNavItems.classList.contains("show-mobile-nav-items")) {
+                mobileNavItems.classList.remove("show-mobile-nav-items")
+                mobileOpenNav.style.display = "inline-block"
+                mobileCloseNav.style.display = "none"
+
+            }
+        }
+    } 
+
+
+    mobileOpenNav.addEventListener("click", handleEvents)
+    mobileCloseNav.addEventListener("click", handleEvents)
+    mobileSearchMenu.addEventListener("click", handleEvents)
+    largeOpenNav.addEventListener("click", handleEvents)
+    largeCloseNav.addEventListener("click", handleEvents)
 
 
     // removes nav items when clicked on window
-    // window.addEventListener("click", function(event){
-    //     if(navItems.classList.contains("show-nav-items")) {
-    //         if(event.target == navOpenBtn || event.target == barsBtn
-    //             || event.target == navCloseBtn || event.target == closeBtn) {
-    //             console.log("do nothing")
-    //         }
-    //         else{
-    //             navItems.classList.remove("show-nav-items")
-    //             navOpenBtn.style.display = "flex"
-    //             navCloseBtn.style.display = "none"
-    //         }
-    //     }
-    // })
+    window.addEventListener("click", function(event){
+        if(mobileSearchForm.classList.contains("show-mobile-search-form-container") ||
+            mobileNavItems.classList.contains("show-mobile-nav-items") ||
+            largeNavItems.classList.contains("show-large-nav-items")) {
 
+            if(event.target == mobileSearchMenu.children[0] || 
+                event.target == mobileSearchMenu.children[1] || 
+                event.target == mobileOpenNav.children[0] || 
+                event.target == mobileCloseNav.children[0] ||
+                event.target == largeOpenNav.children[0] || 
+                event.target == largeCloseNav.children[0]) {
+                console.log("do nothing")
+            }
+            else{
+                mobileNavItems.classList.remove("show-mobile-nav-items")
+                largeOpenNav.style.display = "inline-block"
+                largeCloseNav.style.display = "none"
+
+                largeNavItems.classList.remove("show-large-nav-items")
+                mobileOpenNav.style.display = "inline-block"
+                mobileCloseNav.style.display = "none"
+
+                mobileSearchForm.classList.remove("show-mobile-search-form-container")
+
+            }
+        }
+    })
+
+
+
+   
 </script>
