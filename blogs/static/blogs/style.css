@@ -77,3 +77,114 @@ button {
     outline: none !important;
 } */
 
+
+/* ======
+HOME PAGE
+=========*/
+.new-post-header{
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 0 1rem 0;
+    font-size: 20px;
+}
+
+.blog-form-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
+
+.user-img {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.user-img > span {
+    letter-spacing: 0.05rem;
+}
+
+.user-img > img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.blog-form > form  {
+    text-align: end;
+}
+
+.blog-form > form > input,
+.blog-form > form > textarea {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    letter-spacing: 0.05rem;
+    font-size: 16px;
+    border: none;
+    resize: none;
+}
+
+.blog-form > form > textarea {
+    height: 200px;
+}
+
+.blog-form > form > input {
+   border-top: 1px solid lightgray;
+   border-bottom: 1px solid lightgray;
+}
+
+.blog-form > form > button {
+    padding: 0.7rem 1.3rem;
+    letter-spacing: 0.05rem;
+    border-radius: 25px;
+    color: white;
+    background: orangered;
+    margin: 0.5rem 0.8rem 0 0;
+    border: none;
+    font-size: 17px;
+}
+
+.contents-container {
+    width: 90%;
+    margin: 2rem auto;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.center-container {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.center-container > h2 {
+    letter-spacing: 0.05rem;
+    font-size: 22px;
+}
+
+.center-container > div {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.center-container > div > h3 {
+    letter-spacing: 0.05rem;
+}
+
+.center-container > div > p {
+    letter-spacing: 0.06rem;
+    line-height: 1.5;
+    color: rgb(53, 53, 53);
+}

@@ -15,7 +15,6 @@
     <!-- MOBILE SEARCH MENU -->
     <div class="mobile-search-menu-btns">
         <i class="fas fa-search"></i>
-        <span>Search</span>
     </div>
 
     <!-- OPEN AND CLOSE NAV MENU -->
@@ -30,11 +29,23 @@
 
     <!-- MOBILE NAV MENU -->
     <ul class="mobile-nav-items">
-        <li><a href="">Home</a></li>
-        <li><a href="">My posts</a></li>
-        <li><a href="">Comments</a></li>
-        <li><a href="">History</a></li>
-        <li><a href="">Logout</a></li>
+        <li>
+            <a href="">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Login</span> 
+            </a>
+        </li>
+        <li><a href="">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Register</span>
+            </a>
+        </li>
     </ul>
 
     <!-- MOBILE SEARCH -->
@@ -44,7 +55,6 @@
             <input class="search-box" type="text" name="search" placeholder="Search by key word">
             <button class="search-btn" type="search">
                 <i class="fas fa-search"></i>
-                <span>Search</span>
             </button>
         </form>
     </div>
@@ -68,7 +78,7 @@
             <input type="hidden" value="" name="next">
             <input class="large-search-box" type="text" name="search" placeholder="Search by key word">
             <button class="large-search-btn" type="search">
-                <span>Search</span>
+                <span><i class="fas fa-search"></i></span>
             </button>
         </form>
     </div>
@@ -83,27 +93,43 @@
     </div>
 
     <ul class="large-nav-items">
-        <li><a href="">Home</a></li>
-        <li><a href="">My posts</a></li>
-        <li><a href="">Comments</a></li>
-        <li><a href="">History</a></li>
-        <li><a href="">Logout</a></li>
+        <li>
+            <a href="">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Login</span> 
+            </a>
+        </li>
+        <li><a href="">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Register</span>
+            </a>
+        </li>
     </ul>
 
     <ul class="x-large-nav-items">
-        <li><a href="">Home</a></li>
-        <li><a href="">My posts</a></li>
-        <li><a href="">Comments</a></li>
-        <li><a href="">History</a></li>
-        <li><a href="">Logout</a></li>
+        <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="">Login</a>
+        </li>
+        <li><a href="">Register</a>
+        </li>
     </ul>
 </nav>
 
+<div class="body-overlay-color"></div>
+
 <script type="text/javascript">
 
-    
-
-
+    const bodyOverLayColor = document.querySelector(".body-overlay-color")
+   
     // BARS AND CLOSE BTNS MOBILE NAV ITEMS
     const mobileOpenNav = document.querySelector(".mobile-open-nav-btn")
     const mobileCloseNav = document.querySelector(".mobile-close-nav-btn")
@@ -116,6 +142,10 @@
     const mobileSearchMenu = document.querySelector(".mobile-search-menu-btns")
     const mobileSearchForm = document.querySelector(".mobile-search-form-container")
 
+    // mobile search box and search button
+    const searchBox = document.querySelector(".search-box")
+    const searchBtn = document.querySelector(".search-btn")
+
      // LARGE SCREEN 700PX AND LARGER
      const largeOpenNav = document.querySelector(".large-open-nav-btn")
     const largeCloseNav = document.querySelector(".large-close-nav-btn")
@@ -123,23 +153,24 @@
 
     // LARGE NAV ITEMS
     const largeNavItems = document.querySelector(".large-nav-items")
-
+    
 
     const handleEvents = function(event) {
         if(event.currentTarget == largeOpenNav) {
             largeNavItems.classList.add("show-large-nav-items")
             largeOpenNav.style.display = "none"
-            largeCloseNav.style.display = "inline-block"
+            largeCloseNav.style.display = "flex"
         }
         if(event.currentTarget == largeCloseNav) {
             largeNavItems.classList.remove("show-large-nav-items")
-            largeOpenNav.style.display = "inline-block"
+            largeOpenNav.style.display = "flex"
             largeCloseNav.style.display = "none"
         }
         if(event.currentTarget == mobileOpenNav) {
             mobileNavItems.classList.add("show-mobile-nav-items")
             mobileOpenNav.style.display = "none"
-            mobileCloseNav.style.display = "inline-block"
+            bodyOverLayColor.style.display = "block"
+            mobileCloseNav.style.display = "flex"
 
             if(mobileSearchForm.classList.contains("show-mobile-search-form-container")){
                 mobileSearchForm.classList.remove("show-mobile-search-form-container")
@@ -147,15 +178,23 @@
         }
         if(event.currentTarget == mobileCloseNav) {
             mobileNavItems.classList.remove("show-mobile-nav-items")
-            mobileOpenNav.style.display = "inline-block"
+            mobileOpenNav.style.display = "flex"
             mobileCloseNav.style.display = "none"
+            bodyOverLayColor.style.display = "none"
         }
         if(event.currentTarget == mobileSearchMenu) {
             mobileSearchForm.classList.toggle("show-mobile-search-form-container")
 
+            if(!mobileSearchForm.classList.contains("show-mobile-search-form-container")){
+                bodyOverLayColor.style.display = "none"
+            }
+            else {
+                bodyOverLayColor.style.display = "block"
+            }
+           
             if(mobileNavItems.classList.contains("show-mobile-nav-items")) {
                 mobileNavItems.classList.remove("show-mobile-nav-items")
-                mobileOpenNav.style.display = "inline-block"
+                mobileOpenNav.style.display = "flex"
                 mobileCloseNav.style.display = "none"
 
             }
@@ -180,26 +219,47 @@
                 event.target == mobileSearchMenu.children[1] || 
                 event.target == mobileOpenNav.children[0] || 
                 event.target == mobileCloseNav.children[0] ||
+                event.target == searchBox ||
                 event.target == largeOpenNav.children[0] || 
                 event.target == largeCloseNav.children[0]) {
                 console.log("do nothing")
             }
             else{
                 mobileNavItems.classList.remove("show-mobile-nav-items")
-                largeOpenNav.style.display = "inline-block"
-                largeCloseNav.style.display = "none"
-
                 largeNavItems.classList.remove("show-large-nav-items")
-                mobileOpenNav.style.display = "inline-block"
+                largeOpenNav.style.display = "flex"
+                largeCloseNav.style.display = "none"
+                mobileOpenNav.style.display = "flex"
                 mobileCloseNav.style.display = "none"
 
                 mobileSearchForm.classList.remove("show-mobile-search-form-container")
+
+                bodyOverLayColor.style.display = "none"
 
             }
         }
     })
 
+    window.onload = function() {
+        bodyOverLayColor.style.height = `${document.body.scrollHeight}px`
+    }
 
+    window.addEventListener("resize", function(){
+        largeNavItems.classList.remove("show-large-nav-items")
+        largeOpenNav.style.display = "flex"
+        largeCloseNav.style.display = "none"
+
+        if(bodyOverLayColor.style.display == "block"){
+            bodyOverLayColor.style.display = "none"
+            mobileNavItems.classList.remove("show-mobile-nav-items")
+            mobileSearchForm.classList.remove("show-mobile-search-form-container")
+            mobileOpenNav.style.display = "flex"
+            mobileCloseNav.style.display = "none"
+        }
+        else{
+            bodyOverLayColor.style.height = `${document.body.scrollHeight}px`
+        }
+    })
 
    
 </script>
