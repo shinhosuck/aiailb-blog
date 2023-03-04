@@ -40,8 +40,9 @@ def new_blog_view(request):
     content = request.POST.get('content')
     if title and content:
         return JsonResponse(data={'title':title, 'content': content})
-    print("redirecting")
-    return redirect('blogs:home')
+    else:
+        print("redirecting")
+        return redirect('blogs:home')
 
 
 def blog_detail_view(request, id):

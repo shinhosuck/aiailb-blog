@@ -7,100 +7,104 @@
 
 
 {% block content %}
-        <h2 class="new-post-header">New post</h2>
+        <!-- BLOG FORM SECTION-->
+        <h2 class="new-post-header">Create post</h2>
         <div class="blog-form-container">
             <div class="user-img">
-                <img src="{% static 'blogs/profile_img/user_img.webp' %}" alt="">
                 {% if request.user.username %}
-                    <span>{{ request.user.username }}</span>
+                    <a id="{{ request.user.username }}" class=form-user-info href="">
+                        <img src="{% static 'blogs/profile_img/dog.webp' %}" alt="">
+                        <span>{{ request.user.username }}</span>
+                    </a>
                 {% else %}
-                    <span>Annoymous</span>
+                    <div id="{{ request.user }}" class=form-user-info>
+                        <img src="{% static 'blogs/profile_img/default.webp' %}" alt="">
+                        <span>Annoymous</span>
+                    </div>
                 {% endif %}
             </div>
             <div class="blog-form">
-                <form action="">
+                <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST">
+                    {% csrf_token %}
                     <input type="hidden" value="{% url 'blogs:home' %}" name="next">
                     <input type="text" name="title" placeholder="Title">
                     <textarea name="content" id="" cols="30" rows="10" placeholder="What is on your mind?"></textarea>
-                    <button>Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
+        <!-- END OF BLOG FORM SECTION-->
 
-
-
+    <!-- CONTENT SECTION -->
     <div class="contents-container">
-
-        <div class="center-container">
-            <h2>Latest</h2>
-            <div>
-                <h3>What is Lorem Ipsum?</h3>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type 
-                    specimen book. It has survived not only five centuries, but also the leap into 
-                    electronic typesetting, remaining essentially unchanged. It was popularised in 
-                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                    and more recently with desktop publishing software like Aldus PageMaker including 
-                    versions of Lorem Ipsum.
-                </p>
-            </div>
-            <div>
-                <h3>What is Lorem Ipsum?</h3>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type 
-                    specimen book. It has survived not only five centuries, but also the leap into 
-                    electronic typesetting, remaining essentially unchanged. It was popularised in 
-                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                    and more recently with desktop publishing software like Aldus PageMaker including 
-                    versions of Lorem Ipsum.
-                </p>
-            </div>
-            <div>
-                <h3>What is Lorem Ipsum?</h3>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type 
-                    specimen book. It has survived not only five centuries, but also the leap into 
-                    electronic typesetting, remaining essentially unchanged. It was popularised in 
-                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                    and more recently with desktop publishing software like Aldus PageMaker including 
-                    versions of Lorem Ipsum.
-                </p>
-            </div>
-            <div>
-                <h3>What is Lorem Ipsum?</h3>
-                <p>http://127.0.0.1:8000/
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type 
-                    specimen book. It has survived not only five centuries, but also the leap into 
-                    electronic typesetting, remaining essentially unchanged. It was popularised in 
-                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                    and more recently with desktop publishing software like Aldus PageMaker including 
-                    versions of Lorem Ipsum.
-                </p>
-            </div>
-
-            <div>
-                <h3>What is Lorem Ipsum?</h3>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type 
-                    specimen book. It has survived not only five centuries, but also the leap into 
-                    electronic typesetting, remaining essentially unchanged. It was popularised in 
-                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                    and more recently with desktop publishing software like Aldus PageMaker including 
-                    versions of Lorem Ipsum.
-                </p>
-            </div>
+        <h2 class="content-header">Latest blogs</h2>
+        <div class="blogs-container">
         </div>
     </div>
+    <!-- END OF CONTENT SECTION -->
+
+
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript">
+        // GLOBAL VAR
+        const blogForm = document.querySelector("#blog-form")
+        const blogsContainer = document.querySelector(".blogs-container")
+
+        // handle blogs
+        const handleBlogs = function(response){
+            let blog = `
+                        <div class="content">
+                            {% if request.user.username %}
+                                <a class="user-info">
+                                    <img src="{% static 'blogs/profile_img/dog.webp' %}">
+                                    <span>{{ request.user.username }}</span>
+                                </a>
+                            {% else %}
+                                <div class="user-info">
+                                    <img src="{% static 'blogs/profile_img/default.webp' %}">
+                                    <span>{{ request.user }}</span>
+                                </div>
+                            {% endif %}
+                            <h3 class="title">${response.title}</h3>
+                            <p class="paragraph">${response.content}</p>
+                        </div>
+                    `
+            blogsContainer.innerHTML = blog + blogsContainer.innerHTML
+        }
+
+        // handle new blog
+        const eventHandler = function(event){
+            if(event.target == blogForm) {
+                event.preventDefault()
+
+                const targetElement = event.target
+                const newFormData = new FormData(targetElement)
+                const url = targetElement.getAttribute("action")
+                const method = targetElement.getAttribute("method")
+                const xhr = new XMLHttpRequest()
+                const responseType = 'json'
+
+                xhr.responseType =responseType
+                xhr.open(method, url)
+                xhr.setRequestHeader('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+                xhr.onload = function(){
+                    blogForm.reset()
+                    const response = xhr.response
+                    handleBlogs(response)
+                    
+                }
+                xhr.send(newFormData)
+
+            }
+        }
+        // end of new blog
+
+        blogForm.addEventListener("submit", eventHandler)
+
+
+    </script>
 {% endblock content %} 
 
 

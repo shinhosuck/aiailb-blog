@@ -10,11 +10,8 @@ html {
     scroll-behavior: smooth;
 }
 
-/* =============
-ORANGE 10% COLORS 
-=================*/
 :root{
-    --ORANGE1: rgb(255, 69, 0);
+    --ORANGE1: #ff3300;
     --ORANGE2: rgb(255, 106, 51);
     --ORANGE3: rgb(255, 143, 102);
     --ORANGE4: rgb(255, 181, 153); 
@@ -26,11 +23,12 @@ ORANGE 10% COLORS
     --COLOR4: #B846B3;
     --COLOR5: #5535e7;
     --COLOR6: #0061C7;
+    --COLOR7: rgb(0, 175, 219);
+
+    /* for forms */
+    --color1: rgb(176, 238, 255);
+    --color2: rgb(126, 212, 236);
 }
-
-
-
-
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -44,7 +42,7 @@ li {
 a {
     text-decoration: none;
 }
-
+button:active, button:focus,
 input:focus, input:active,
 textarea:focus, textarea:active,
 a:focus, a:active span:active {
@@ -86,31 +84,39 @@ HOME PAGE
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem 0 1rem 0;
-    font-size: 20px;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 0.05rem;
 }
 
 .blog-form-container {
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
-    border: 1px solid lightgray;
+    border: 1px solid #7ed4ec;
     border-radius: 10px;
-    padding-bottom: 0.5rem;
     text-align: left;
+    padding: 1rem;
 }
 
 .user-img {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 1rem;
 }
 
-.user-img > span {
+.form-user-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 0 1rem 0;
+    color: black;
+}
+
+.user-img > .form-user-info > span {
     letter-spacing: 0.05rem;
 }
 
-.user-img > img {
+.user-img > .form-user-info > img {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -126,30 +132,38 @@ HOME PAGE
     display: block;
     width: 100%;
     padding: 1rem;
-    letter-spacing: 0.05rem;
+    letter-spacing: 0.06rem;
     font-size: 16px;
-    border: none;
+    border: 1px solid rgb(126, 212, 236);
+    border-radius: 8px;
+    background: rgb(188, 240, 255);
     resize: none;
 }
 
 .blog-form > form > textarea {
     height: 200px;
-}
-
-.blog-form > form > input {
-   border-top: 1px solid lightgray;
-   border-bottom: 1px solid lightgray;
+    margin-top: 1rem;
 }
 
 .blog-form > form > button {
-    padding: 0.7rem 1.3rem;
+    padding: 0.9rem 1.5rem;
     letter-spacing: 0.05rem;
-    border-radius: 25px;
-    color: white;
-    background: orangered;
-    margin: 0.5rem 0.8rem 0 0;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    background: rgb(255, 51, 0);
+    margin: 1rem 0 0 0;
     border: none;
     font-size: 17px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: padding 0.2s linear, box-shadow 0.2s linear;
+}
+
+@media (hover:hover) {
+    .blog-form > form > button:hover {
+        padding: 0.9rem 2rem;
+        box-shadow:1px 2px 7px 1px rgb(163, 163, 163);
+    }    
 }
 
 .contents-container {
@@ -161,30 +175,49 @@ HOME PAGE
     gap: 1rem;
 }
 
-.center-container {
+.contents-container > .content-header {
+    letter-spacing: 0.05rem;
+    flex: 0 0 100%;
+}
+
+.blogs-container {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
-.center-container > h2 {
-    letter-spacing: 0.05rem;
-    font-size: 22px;
-}
-
-.center-container > div {
+.blogs-container > .content {
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 1rem;
 }
 
-.center-container > div > h3 {
+.content > .user-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+} 
+
+.content > .user-info > img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.content > .user-info > span {
     letter-spacing: 0.05rem;
 }
 
-.center-container > div > p {
+.content > .title {
+    letter-spacing: 0.05rem;
+}
+
+.content > .paragraph {
     letter-spacing: 0.06rem;
     line-height: 1.5;
+    padding-top: 0.8rem;
     color: rgb(53, 53, 53);
 }
