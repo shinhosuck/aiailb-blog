@@ -4,7 +4,7 @@
 <nav class="mobile-nav-bar-container">
 
     <!-- BRAND NAME -->
-    <a href="" class="mobile-brand-name">
+    <a href="{% url 'blogs:home' %}" class="mobile-brand-name">
         <span class="mobile-brand-name-large-text">A</span>
         <div class="mobile-brand-name-small-text">
             <span>IAILB</span>
@@ -65,7 +65,7 @@
 
 <nav class="large-nav-bar-container">
 
-    <a href="" class="large-brand-name">
+    <a href="{% url 'blogs:home' %}" class="large-brand-name">
         <span class="large-brand-name-large-text">A</span>
         <div class="large-brand-name-small-text">
             <span>IAILB</span>
@@ -94,7 +94,7 @@
 
     <ul class="large-nav-items">
         <li>
-            <a href="">
+            <a href="{% url 'blogs:home' %}">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -114,7 +114,7 @@
 
     <ul class="x-large-nav-items">
         <li>
-            <a href="">Home</a>
+            <a href="{% url 'blogs:home' %}">Home</a>
         </li>
         <li>
             <a href="">Login</a>

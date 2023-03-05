@@ -19,11 +19,17 @@ header {
 
 .mobile-nav-bar-container {
     margin: 0 auto;
-    width: 90%;
+    width: 95%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+}
+
+@media screen and (min-width: 500px) {
+    .mobile-nav-bar-container {
+        width: 90%;
+    }
 }
 
 .mobile-brand-name {

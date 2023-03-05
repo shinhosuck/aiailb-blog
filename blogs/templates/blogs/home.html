@@ -23,14 +23,16 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="blog-form">
-                <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" value="{% url 'blogs:home' %}" name="next">
-                    <input type="text" name="title" placeholder="Title">
-                    <textarea name="content" id="" cols="30" rows="10" placeholder="What is on your mind?"></textarea>
-                    <button type="submit">Submit</button>
-                </form>
+            <div class="blog-form-background">
+                <div class="blog-form">
+                    <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{% url 'blogs:home' %}" name="next">
+                        <input type="text" name="title" placeholder="Title">
+                        <textarea name="content" id="" cols="30" rows="10" placeholder="What is on your mind?"></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!-- END OF BLOG FORM SECTION-->
@@ -39,6 +41,7 @@
     <div class="contents-container">
         <h2 class="content-header">Latest blogs</h2>
         <div class="blogs-container">
+            
         </div>
     </div>
     <!-- END OF CONTENT SECTION -->
@@ -55,19 +58,37 @@
         const handleBlogs = function(response){
             let blog = `
                         <div class="content">
-                            {% if request.user.username %}
-                                <a class="user-info">
-                                    <img src="{% static 'blogs/profile_img/dog.webp' %}">
-                                    <span>{{ request.user.username }}</span>
+                            <div class="content-background-color">
+                                {% if request.user.username %}
+                                    <a class="user-info">
+                                        <img src="{% static 'blogs/profile_img/dog.webp' %}">
+                                        <span>{{ request.user.username }}</span>
+                                    </a>
+                                {% else %}
+                                    <div class="user-info">
+                                        <img src="{% static 'blogs/profile_img/default.webp' %}">
+                                        <span>{{ request.user }}</span>
+                                    </div>
+                                {% endif %}
+                                <h3 class="title">${response.title}</h3>
+                                <p class="paragraph">
+                                    ${response.content}... <a href="/blog/detail/${response.id}">Read more</a>
+                                </p>
+                            </div>
+                            <div class="content-font-awesome">
+                                <a class="content-icon" href="">
+                                    <i class="fas fa-heart"></i>
+                                    <span>10</span>
                                 </a>
-                            {% else %}
-                                <div class="user-info">
-                                    <img src="{% static 'blogs/profile_img/default.webp' %}">
-                                    <span>{{ request.user }}</span>
+                                <a class="content-icon" href="">
+                                    <i class="fa-solid fa-reply"></i>
+                                    <span>reply</span>
+                                </a>
+                                <div class="content-icon">
+                                    <i class="fa-solid fa-message"></i>
+                                    <span>23<span>
                                 </div>
-                            {% endif %}
-                            <h3 class="title">${response.title}</h3>
-                            <p class="paragraph">${response.content}</p>
+                            </div>
                         </div>
                     `
             blogsContainer.innerHTML = blog + blogsContainer.innerHTML
@@ -100,6 +121,25 @@
             }
         }
         // end of new blog
+
+        // load blogs
+        const loadBlogs = function(){
+            const xhr = new XMLHttpRequest()
+            const method = "GET"
+            const url = "{% url 'blogs:all-blogs' %}"
+            const responseType = "json"
+            xhr.responseType = responseType
+            xhr.open(method, url)
+            xhr.onload = function() {
+                const xhrResponse = [...xhr.response.blog_list]
+                xhrResponse.forEach(function(response) {
+                    handleBlogs(response)
+                })
+            }
+            xhr.send()
+        }
+        loadBlogs()
+        // end of load blogs
 
         blogForm.addEventListener("submit", eventHandler)
 

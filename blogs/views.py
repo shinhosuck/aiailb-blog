@@ -38,6 +38,11 @@ def new_blog_view(request):
     print(request.is_ajax())
     title = request.POST.get('title')
     content = request.POST.get('content')
+    
+    new_str = ' '.join(content.split()[0:int(len(content.split()) * 0.6)])
+    content = new_str
+    print(content)
+
     if title and content:
         return JsonResponse(data={'title':title, 'content': content})
     else:

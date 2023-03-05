@@ -8,6 +8,7 @@
 
 html {
     scroll-behavior: smooth;
+    /* min-width: -webkit-fill-available; */
 }
 
 :root{
@@ -33,6 +34,9 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
+    min-height: 100vh;
+    overflow-y: scroll;
+    /* min-width: -webkit-fill-available; */
 }
 
 li {
@@ -80,7 +84,7 @@ button {
 HOME PAGE
 =========*/
 .new-post-header{
-    width: 90%;
+    width: 95%;
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem 0 1rem 0;
@@ -90,13 +94,15 @@ HOME PAGE
 }
 
 .blog-form-container {
-    width: 90%;
+    width: 95%;
     max-width: 600px;
     margin: 0 auto;
-    border: 1px solid #7ed4ec;
+    /* border: 1px solid #9b7eec; */
     border-radius: 10px;
     text-align: left;
-    padding: 1rem;
+    padding: 1.3rem;
+
+    background: linear-gradient(to bottom right, #c587ff, #6b1cff);
 }
 
 .user-img {
@@ -109,7 +115,7 @@ HOME PAGE
     align-items: center;
     flex-wrap: wrap;
     padding: 0 0 1rem 0;
-    color: black;
+    color: white;
 }
 
 .user-img > .form-user-info > span {
@@ -127,6 +133,12 @@ HOME PAGE
     text-align: end;
 }
 
+.blog-form-container > .blog-form-background {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
 .blog-form > form > input,
 .blog-form > form > textarea {
     display: block;
@@ -134,9 +146,8 @@ HOME PAGE
     padding: 1rem;
     letter-spacing: 0.06rem;
     font-size: 16px;
-    border: 1px solid rgb(126, 212, 236);
+    border: 1px solid #b3a0e6;
     border-radius: 8px;
-    background: rgb(188, 240, 255);
     resize: none;
 }
 
@@ -148,7 +159,7 @@ HOME PAGE
 .blog-form > form > button {
     padding: 0.9rem 1.5rem;
     letter-spacing: 0.05rem;
-    border-radius: 10px;
+    border-radius: 10px; 
     color: rgb(255, 255, 255);
     background: rgb(255, 51, 0);
     margin: 1rem 0 0 0;
@@ -167,12 +178,18 @@ HOME PAGE
 }
 
 .contents-container {
-    width: 90%;
+    width: 95%;
     margin: 2rem auto;
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+    .contents-container {
+        margin-bottom: 5rem;
+    }
 }
 
 .contents-container > .content-header {
@@ -181,6 +198,7 @@ HOME PAGE
 }
 
 .blogs-container {
+    flex: 0 0 100%;
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -188,36 +206,81 @@ HOME PAGE
 }
 
 .blogs-container > .content {
-    border: 1px solid lightgray;
+    flex: 0 0 100%;
+    /* border: 1px solid lightgray; */
+    border-radius: 10px;
+    padding: 1.3rem;
+    background: linear-gradient(to bottom right, #c587ff, #6b1cff);
+}
+
+.blogs-container > .content > .content-background-color {
+    /* border: 1px solid lightgray; */
+    background: white;
     border-radius: 10px;
     padding: 1rem;
 }
 
-.content > .user-info {
+.content >  .content-background-color > .user-info {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     padding-bottom: 1rem;
 } 
 
-.content > .user-info > img {
+.content > .content-background-color > .user-info > img {
     width: 45px;
     height: 45px;
     border-radius: 50%;
     margin-right: 0.5rem;
 }
 
-.content > .user-info > span {
+.content > .content-background-color > .user-info > span {
     letter-spacing: 0.05rem;
 }
 
-.content > .title {
+.content > .content-background-color > .title {
     letter-spacing: 0.05rem;
 }
 
-.content > .paragraph {
+.content > .content-background-color > .paragraph {
     letter-spacing: 0.06rem;
     line-height: 1.5;
     padding-top: 0.8rem;
     color: rgb(53, 53, 53);
+}
+
+.content > .content-background-color > .paragraph > a {
+    color: orangered;
+    letter-spacing: 0.05rem;
+    text-decoration: underline;
+}
+
+.content-font-awesome {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+}
+
+.content-font-awesome > .content-icon {
+    padding: 1.5rem 0 0.5rem 0;
+    color: rgb(230, 230, 230);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 0.3rem;
+    font-size: 20px;
+
+}
+.content-font-awesome > .content-icon > span {
+    font-size: 16px;
+    letter-spacing: 0.05rem;
+}
+
+@media screen and (min-width: 500px) {
+    .new-post-header,
+    .blog-form-container,
+    .contents-container {
+        width: 90%
+    }
 }
