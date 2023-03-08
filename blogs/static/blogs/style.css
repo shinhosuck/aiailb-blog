@@ -46,6 +46,7 @@ li {
 a {
     text-decoration: none;
 }
+
 button:active, button:focus,
 input:focus, input:active,
 textarea:focus, textarea:active,
@@ -93,15 +94,14 @@ HOME PAGE
     letter-spacing: 0.05rem;
 }
 
+/* BLOG FORM */
 .blog-form-container {
     width: 95%;
     max-width: 600px;
     margin: 0 auto;
-    /* border: 1px solid #9b7eec; */
     border-radius: 10px;
     text-align: left;
     padding: 1.3rem;
-
     background: linear-gradient(to bottom right, #c587ff, #6b1cff);
 }
 
@@ -176,21 +176,23 @@ HOME PAGE
         box-shadow:1px 2px 7px 1px rgb(163, 163, 163);
     }    
 }
+/* END OF BLOG FORM */
 
 .contents-container {
     width: 95%;
     margin: 2rem auto;
+    margin-bottom: 2rem;
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
     .contents-container {
         margin-bottom: 5rem;
     }
-}
+} */
 
 .contents-container > .content-header {
     letter-spacing: 0.05rem;
@@ -207,14 +209,12 @@ HOME PAGE
 
 .blogs-container > .content {
     flex: 0 0 100%;
-    /* border: 1px solid lightgray; */
     border-radius: 10px;
     padding: 1.3rem;
     background: linear-gradient(to bottom right, #c587ff, #6b1cff);
 }
 
 .blogs-container > .content > .content-background-color {
-    /* border: 1px solid lightgray; */
     background: white;
     border-radius: 10px;
     padding: 1rem;
@@ -263,7 +263,7 @@ HOME PAGE
 }
 
 .content-font-awesome > .content-icon {
-    padding: 1.5rem 0 0.5rem 0;
+    padding: 1rem 0 0 0;
     color: rgb(230, 230, 230);
     display: flex;
     align-items: center;
@@ -277,7 +277,8 @@ HOME PAGE
     letter-spacing: 0.05rem;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 700px) {
+    .create-post-button-container,
     .new-post-header,
     .blog-form-container,
     .contents-container {

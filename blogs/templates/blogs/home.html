@@ -7,39 +7,40 @@
 
 
 {% block content %}
-        <!-- BLOG FORM SECTION-->
-        <h2 class="new-post-header">Create post</h2>
-        <div class="blog-form-container">
-            <div class="user-img">
-                {% if request.user.username %}
-                    <a id="{{ request.user.username }}" class=form-user-info href="">
-                        <img src="{% static 'blogs/profile_img/dog.webp' %}" alt="">
-                        <span>{{ request.user.username }}</span>
-                    </a>
-                {% else %}
-                    <div id="{{ request.user }}" class=form-user-info>
-                        <img src="{% static 'blogs/profile_img/default.webp' %}" alt="">
-                        <span>Annoymous</span>
-                    </div>
-                {% endif %}
-            </div>
-            <div class="blog-form-background">
-                <div class="blog-form">
-                    <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" value="{% url 'blogs:home' %}" name="next">
-                        <input type="text" name="title" placeholder="Title">
-                        <textarea name="content" id="" cols="30" rows="10" placeholder="What is on your mind?"></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
+           
+    <!-- BLOG FORM SECTION-->
+    <h2 class="new-post-header">Create post</h2>
+    <div class="blog-form-container">
+        <div class="user-img">
+            {% if request.user.username %}
+                <a id="{{ request.user.username }}" class=form-user-info href="">
+                    <img src="{% static 'blogs/profile_img/dog.webp' %}" alt="">
+                    <span>{{ request.user.username }}</span>
+                </a>
+            {% else %}
+                <div id="{{ request.user }}" class=form-user-info>
+                    <img src="{% static 'blogs/profile_img/default.webp' %}" alt="">
+                    <span>Annoymous</span>
                 </div>
+            {% endif %}
+        </div>
+        <div class="blog-form-background">
+            <div class="blog-form">
+                <form id="blog-form" action="{% url 'blogs:new-blog' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{% url 'blogs:home' %}" name="next">
+                    <input type="text" name="title" placeholder="Title">
+                    <textarea name="content" id="" cols="30" rows="10" placeholder="What is on your mind?"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
-        <!-- END OF BLOG FORM SECTION-->
+    </div>
+    <!-- END OF BLOG FORM SECTION-->
 
     <!-- CONTENT SECTION -->
     <div class="contents-container">
-        <h2 class="content-header">Latest blogs</h2>
+        <!-- <h2 class="content-header">Latest blogs</h2> -->
         <div class="blogs-container">
             
         </div>
