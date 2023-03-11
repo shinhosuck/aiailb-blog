@@ -84,7 +84,7 @@ button {
 /* ======
 HOME PAGE
 =========*/
-.new-post-header{
+/* .new-post-header{
     width: 95%;
     max-width: 600px;
     margin: 0 auto;
@@ -92,17 +92,26 @@ HOME PAGE
     font-size: 22px;
     text-align: center;
     letter-spacing: 0.05rem;
-}
+} */
 
 /* BLOG FORM */
 .blog-form-container {
     width: 95%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
     border-radius: 10px;
     text-align: left;
-    padding: 1.3rem;
-    background: linear-gradient(to bottom right, #c587ff, #6b1cff);
+    padding: 1rem;
+    /* background: linear-gradient(to bottom right, #c587ff, #6b1cff); */
+    border: 1px solid lightgray;
+}
+
+.new-post-header{
+    font-size: 22px;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    /* border: 1px solid black; */
 }
 
 .user-img {
@@ -114,29 +123,32 @@ HOME PAGE
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0 0 1rem 0;
-    color: white;
+    /* padding: 0 0 0.5rem 0; */
+    color: rgb(44, 44, 44);
+    /* border: 1px solid black; */
 }
 
 .user-img > .form-user-info > span {
     letter-spacing: 0.05rem;
+    font-size: 0.9rem;
 }
 
 .user-img > .form-user-info > img {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     margin-right: 0.5rem;
-}
-
-.blog-form > form  {
-    text-align: end;
 }
 
 .blog-form-container > .blog-form-background {
     background: white;
     border-radius: 10px;
-    padding: 1rem;
+    margin-top: 0.8rem;
+    /* padding: 1rem; */
+}
+
+.blog-form > form  {
+    text-align: end;
 }
 
 .blog-form > form > input,
@@ -146,23 +158,25 @@ HOME PAGE
     padding: 1rem;
     letter-spacing: 0.06rem;
     font-size: 16px;
-    border: 1px solid #b3a0e6;
+    /* border: 1px solid #b3a0e6; */
+    border: 1px solid lightgray;
     border-radius: 8px;
     resize: none;
 }
 
 .blog-form > form > textarea {
     height: 200px;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 
 .blog-form > form > button {
-    padding: 0.9rem 1.5rem;
+    padding: 0.8rem 1.3rem;
     letter-spacing: 0.05rem;
     border-radius: 10px; 
     color: rgb(255, 255, 255);
     background: rgb(255, 51, 0);
-    margin: 1rem 0 0 0;
+    border-radius: 25px;
+    margin: 0.8rem 0 0 0;
     border: none;
     font-size: 17px;
     cursor: pointer;
@@ -211,13 +225,15 @@ HOME PAGE
     flex: 0 0 100%;
     border-radius: 10px;
     padding: 1.3rem;
-    background: linear-gradient(to bottom right, #c587ff, #6b1cff);
+    /* background: linear-gradient(to bottom right, #c587ff, #6b1cff); */
+    border: 1px solid lightgray;
 }
 
 .blogs-container > .content > .content-background-color {
     background: white;
     border-radius: 10px;
     padding: 1rem;
+    border: 1px solid lightgray;
 }
 
 .content >  .content-background-color > .user-info {
@@ -264,7 +280,7 @@ HOME PAGE
 
 .content-font-awesome > .content-icon {
     padding: 1rem 0 0 0;
-    color: rgb(230, 230, 230);
+    color: rgb(112, 112, 112);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -278,8 +294,6 @@ HOME PAGE
 }
 
 @media screen and (min-width: 700px) {
-    .create-post-button-container,
-    .new-post-header,
     .blog-form-container,
     .contents-container {
         width: 90%
