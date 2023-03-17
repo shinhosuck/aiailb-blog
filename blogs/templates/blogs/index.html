@@ -32,6 +32,38 @@
 </head>
 <body>
     <header id="header">
+        <nav class="nav-bar-container">
+            <a class="brand-name" href="">
+                <span class="brand-large-text">A</span>
+                <div class="brand-small-text-container">
+                    <span class="small-text-1">IAILB</span>
+                    <span class="small-text-2">FORUM</span>
+                </div>
+            </a>
+            <form class="large-screen-search-form" action="#" method="GET">
+                <input type="hidden" value="/" name="next">
+                <input class="large-screen-search-input" type="text" name="search" placeholder="Your search">
+                <button class="large-screen-search-button" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="open-mobile-nav-items-container">
+                <i class="fas fa-bars open-mobile-nav-items"></i>
+            </div>
+            <ul class="nav-items-container">
+                <li class="close-mobile-nav-items-container">
+                    <i class="fas fa-close close-mobile-nav-items"></i>
+                </li>
+                <li><a href="">Home</a></li>
+                <li class="large-screen-search"><a href="">Search</a></li>
+                {% if request.user.username %}
+                    <li><a href="">Posts</a></li>
+                    <li><a href="">Profile</a></li>
+                    <li><a href="">New post</a></li>
+                {% else %}
+                    <li><a href="">Login</a></li>
+                    <li><a href="">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
     <main>
         {% block content %}
@@ -40,6 +72,21 @@
     <footer>
        
     </footer>
+    <script>
+
+        const openMobileNavItems = document.querySelector(".open-mobile-nav-items")
+        const navItemsContainer = document.querySelector(".nav-items-container")
+        const closeMobileNavItems = document.querySelector(".close-mobile-nav-items")
+
+
+        openMobileNavItems.addEventListener("click", function(){
+            navItemsContainer.classList.toggle("show-nav-items-container")
+        })
+
+        closeMobileNavItems.addEventListener("click", function(){
+            navItemsContainer.classList.toggle("show-nav-items-container")
+        })
+    </script>
     <script type="text/javascript" src="{% static 'blogs/main.js' %}"></script>
 </body>
 </html>
