@@ -210,7 +210,10 @@ NAVIGATION
         overflow: hidden;
         white-space: nowrap;
         background: blue;
-        background: linear-gradient(to bottom, rgb(0, 0, 80), rgba(0, 0, 112, 0.603));
+        background: linear-gradient(
+            to bottom, rgb(0, 0, 80), 
+            rgba(0, 0, 112, 0.603)
+        );
         opacity: 0;
         transition: opacity 0.3s ease-in-out
     }
