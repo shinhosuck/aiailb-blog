@@ -16,9 +16,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- normalize css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" 
@@ -30,62 +27,18 @@
     
     <!-- project css -->
     <link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}">
-    <link rel="stylesheet" type='text/css' href="{% static 'blogs/nav.css' %}">
     
     <title>{% block title %}{% endblock title %}</title>
-
-    <style>
-        .bottom-nav-bar {
-            display: none;
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%;
-            background: purple; 
-        }
-
-        .bottom-nav-bar > .nav-items {
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .bottom-nav-bar > .nav-items > span {
-            font-size: 18maxpx;
-            color: white;
-            letter-spacing: 0.05rem;
-            padding: 1rem 0;
-
-        }
-        @media screen and (max-width: 700px) {
-            .bottom-nav-bar {
-                display: block;
-            }
-        }
-        
-    </style>
-
-
 </head>
 <body>
     <header id="header">
-        {% include 'blogs/nav.html' %}
     </header>
     <main>
         {% block content %}
         {% endblock content %}
     </main>
     <footer>
-        <!-- <div class="bottom-nav-bar">
-            <div class="nav-items"> 
-                <span>Home</span>
-                <span>Create</span>
-                <span>Posts</span>
-                <span>Replies</span>
-            </div> -->
-        </div>
+       
     </footer>
     <script type="text/javascript" src="{% static 'blogs/main.js' %}"></script>
 </body>
