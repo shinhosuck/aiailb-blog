@@ -7,11 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- lobster google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-   
     <!-- roboto google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +27,23 @@
 </head>
 <body>
     <header id="header">
+         <!-- NEW POST FORM -->
+         <div class="post-form-container">
+            <div class="post-form-close-btn">
+                <i class="fas fa-close post-form-close"></i>
+            </div>
+            <form class="post-form" action="#" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="/" name="next">
+                <label for="post-input">Title</label>
+                <input class="post-form-input" id="post-input" type="text" name="search" placeholder="Title">
+                <label for="post-content">Content</label>
+                <textarea class="post-form-content" name="content" id="post-content" cols="30" rows="10" placeholder="What's up?"></textarea>
+                <button class="post-from-button" type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- NAVIGATION BAR -->
         <nav class="nav-bar-container">
             <a class="brand-name" href="">
                 <span class="brand-large-text">A</span>
@@ -40,10 +52,10 @@
                     <span class="small-text-2">FORUM</span>
                 </div>
             </a>
-            <form class="large-screen-search-form" action="#" method="GET">
+            <form class="search-form" action="#" method="GET">
                 <input type="hidden" value="/" name="next">
-                <input class="large-screen-search-input" type="text" name="search" placeholder="Your search">
-                <button class="large-screen-search-button" type="submit"><i class="fas fa-search"></i></button>
+                <input class="search-input" type="text" name="search" placeholder="Your search">
+                <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
             </form>
             <div class="open-mobile-nav-items-container">
                 <i class="fas fa-bars open-mobile-nav-items"></i>
@@ -53,17 +65,30 @@
                     <i class="fas fa-close close-mobile-nav-items"></i>
                 </li>
                 <li><a href="">Home</a></li>
-                <li class="large-screen-search"><a href="">Search</a></li>
+                <li class="mobile-search-menu-container"><a class="mobile-search-menu" href="">Search</a></li>
                 {% if request.user.username %}
                     <li><a href="">Posts</a></li>
                     <li><a href="">Profile</a></li>
-                    <li><a href="">New post</a></li>
+                    <li><a class="new-post" href="">New post</a></li>
                 {% else %}
                     <li><a href="">Login</a></li>
                     <li><a href="">Register</a></li>
+                    <li><a class="new-post" href="">New post</a></li>
                 {% endif %}
             </ul>
         </nav>
+
+        <!-- MOBILE SEARCH FORM -->
+        <div class="mobile-search-form-container">
+            <div class="mobile-seach-close-btn">
+                <i class="fas fa-close mobile-search-close"></i>
+            </div>
+            <form class="mobile-search-form" action="#" method="GET">
+                <input type="hidden" value="/" name="next">
+                <input class="mobile-search-input" type="text" name="search" placeholder="Your search">
+                <button class="mobile-search-button" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
     </header>
     <main>
         {% block content %}
@@ -77,15 +102,54 @@
         const openMobileNavItems = document.querySelector(".open-mobile-nav-items")
         const navItemsContainer = document.querySelector(".nav-items-container")
         const closeMobileNavItems = document.querySelector(".close-mobile-nav-items")
+        const mobileSearchMenu = document.querySelector(".mobile-search-menu")
+        const mobileSearchClose = document.querySelector(".mobile-search-close")
+        const mobileSearchFormContainer = document.querySelector(".mobile-search-form-container")
+        const postFormContainer = document.querySelector(".post-form-container")
+        const newPost = document.querySelector(".new-post")
+        const postFormClose = document.querySelector(".post-form-close")
+
 
 
         openMobileNavItems.addEventListener("click", function(){
             navItemsContainer.classList.toggle("show-nav-items-container")
+            document.body.classList.add("body-disable-scroll")
         })
 
         closeMobileNavItems.addEventListener("click", function(){
             navItemsContainer.classList.toggle("show-nav-items-container")
+            document.body.classList.remove("body-disable-scroll")
         })
+
+        mobileSearchMenu.addEventListener("click", function(event){
+            event.preventDefault()
+            mobileSearchFormContainer.classList.toggle("show-mobile-search-form-container")
+            navItemsContainer.classList.toggle("show-nav-items-container")
+            document.body.classList.add("body-disable-scroll")
+        })
+
+        mobileSearchClose.addEventListener("click", function(){
+            mobileSearchFormContainer.classList.toggle("show-mobile-search-form-container")
+            document.body.classList.remove("body-disable-scroll")
+        })
+
+        newPost.addEventListener("click", function(even){
+            even.preventDefault()
+            postFormContainer.classList.toggle("show-post-form-container")
+            navItemsContainer.classList.toggle("show-nav-items-container")
+            document.body.classList.add("body-disable-scroll")
+        })
+
+        postFormClose.addEventListener("click", function(){
+            postFormContainer.classList.toggle("show-post-form-container")
+            document.body.classList.remove("body-disable-scroll")
+        })
+
+        window.addEventListener("resize", function(){
+            mobileSearchFormContainer.classList.remove("show-mobile-search-form-container")
+            navItemsContainer.classList.remove("show-nav-items-container")
+        })
+
     </script>
     <script type="text/javascript" src="{% static 'blogs/main.js' %}"></script>
 </body>
