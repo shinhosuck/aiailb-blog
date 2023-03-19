@@ -32,11 +32,11 @@
             <div class="post-form-close-btn">
                 <i class="fas fa-close post-form-close"></i>
             </div>
-            <form class="post-form" action="#" method="post">
+            <form id="post-form" class="post-form" action="{% url 'blogs:new-blog' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="/" name="next">
                 <label for="post-input">Title</label>
-                <input class="post-form-input" id="post-input" type="text" name="search" placeholder="Title">
+                <input class="post-form-input" id="post-input" type="text" name="title" placeholder="Title">
                 <label for="post-content">Content</label>
                 <textarea class="post-form-content" name="content" id="post-content" cols="30" rows="10" placeholder="What's up?"></textarea>
                 <button class="post-from-button" type="submit">Submit</button>
@@ -97,57 +97,72 @@
     <footer>
        
     </footer>
-    <script>
+    <script type="text/javascript">
+        const postForm = document.querySelector("#post-form")
+        const postContainer = document.querySelector(".contents")
+        
+        const handlePost = function(blog) {
+            let content = `
+                            <div class="content" data-blog-id="6">
+                                <div class="author-info-container">
+                                    <img src="{% static 'blogs/profile_img/dog.webp' %}">
+                                    {% if not request.user.username %}
+                                        <div class="user-info">
+                                            <span>annonymous</span>
+                                            <span>Posted: Mar 2, 2023</span>
+                                        </div>
+                                    {% else %}
+                                        <div class="user-info">
+                                            <span>{{ request.user.username }}</span>
+                                            <span>Posted: Mar 2, 2023</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="content-text-container">
+                                    <h3 class="title">${blog.title}</h3>
+                                    <p class="paragraph">${blog.content}...</p>
+                                    <div class="content-icons">
+                                        <a href="">
+                                            <i class="fa-solid fa-comment"></i>
+                                            <span>0 comment</span>
+                                        </a>
+                                        <a href="">
+                                            <i class="fa-solid fa-heart"></i>
+                                            <span>0 like</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            `
+            postContainer.innerHTML = content + postContainer.innerHTML
+            alert("post posted")
+            const allBlogs = [...document.querySelectorAll(".content")]
+            allBlogs.forEach(function(blog) {
+                blog.addEventListener("click", function(event) {
+                    let blogId = event.currentTarget.getAttribute("data-blog-id")
+                    console.log(blogId)
+                })
+            })
+        }
 
-        const openMobileNavItems = document.querySelector(".open-mobile-nav-items")
-        const navItemsContainer = document.querySelector(".nav-items-container")
-        const closeMobileNavItems = document.querySelector(".close-mobile-nav-items")
-        const mobileSearchMenu = document.querySelector(".mobile-search-menu")
-        const mobileSearchClose = document.querySelector(".mobile-search-close")
-        const mobileSearchFormContainer = document.querySelector(".mobile-search-form-container")
-        const postFormContainer = document.querySelector(".post-form-container")
-        const newPost = document.querySelector(".new-post")
-        const postFormClose = document.querySelector(".post-form-close")
-
-
-
-        openMobileNavItems.addEventListener("click", function(){
-            navItemsContainer.classList.toggle("show-nav-items-container")
-            document.body.classList.add("body-disable-scroll")
-        })
-
-        closeMobileNavItems.addEventListener("click", function(){
-            navItemsContainer.classList.toggle("show-nav-items-container")
-            document.body.classList.remove("body-disable-scroll")
-        })
-
-        mobileSearchMenu.addEventListener("click", function(event){
+        postForm.addEventListener("submit", function(event) {
             event.preventDefault()
-            mobileSearchFormContainer.classList.toggle("show-mobile-search-form-container")
-            navItemsContainer.classList.toggle("show-nav-items-container")
-            document.body.classList.add("body-disable-scroll")
-        })
-
-        mobileSearchClose.addEventListener("click", function(){
-            mobileSearchFormContainer.classList.toggle("show-mobile-search-form-container")
-            document.body.classList.remove("body-disable-scroll")
-        })
-
-        newPost.addEventListener("click", function(even){
-            even.preventDefault()
-            postFormContainer.classList.toggle("show-post-form-container")
-            navItemsContainer.classList.toggle("show-nav-items-container")
-            document.body.classList.add("body-disable-scroll")
-        })
-
-        postFormClose.addEventListener("click", function(){
-            postFormContainer.classList.toggle("show-post-form-container")
-            document.body.classList.remove("body-disable-scroll")
-        })
-
-        window.addEventListener("resize", function(){
-            mobileSearchFormContainer.classList.remove("show-mobile-search-form-container")
-            navItemsContainer.classList.remove("show-nav-items-container")
+            const target = event.target
+            const newPost = new FormData(target)
+            const method = target.getAttribute("method")
+            const url = target.getAttribute("action")
+            const responseType = "json"
+            const xhr = new XMLHttpRequest()
+            xhr.responseType = responseType
+            xhr.open(method, url)
+            xhr.setRequestHeader('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+            xhr.onload = function() {
+                const blog = xhr.response
+                postForm.reset()
+                handlePost(blog)
+            }
+            xhr.send(newPost)
         })
 
     </script>

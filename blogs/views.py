@@ -18,7 +18,7 @@ def blog_list_view(request):
         sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
         like Aldus PageMaker including versions of Lorem Ipsum."""
     
-    new_str = ' '.join(article.split()[0:int(len(article.split()) * 0.6)])
+    new_str = ' '.join(article.split()[0:int(len(article.split()) * 0.4)])
     article = new_str
 
     blog_list = [
@@ -39,9 +39,9 @@ def new_blog_view(request):
     title = request.POST.get('title')
     content = request.POST.get('content')
     
-    new_str = ' '.join(content.split()[0:int(len(content.split()) * 0.6)])
-    content = new_str
-    print(content)
+    # new_str = ' '.join(content.split()[0:int(len(content.split()) * 0.4)])
+    # content = new_str
+    print(title, content)
 
     if title and content:
         return JsonResponse(data={'title':title, 'content': content})
